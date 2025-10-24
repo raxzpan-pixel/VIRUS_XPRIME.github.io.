@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>!!! PERINGATAN KEAMANAN KRITIS !!!</title>
+    <style>
+        /* --- CSS: Memastikan Tampilan Jelas --- */
+        body {
+            background-color: #000;
+            color: #FF0000; 
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .box {
+            background-color: #111;
+            border: 5px solid #FF0000;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            max-width: 90%;
+            border-radius: 10px;
+            animation: pulse 1.5s infinite;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #FF0000;
+        }
+        p {
+            font-size: 1.2em;
+            color: #FFFF00; 
+            margin-bottom: 30px;
+        }
+        .timer {
+            font-size: 3em;
+            font-weight: bold;
+            color: #00FF00;
+            margin-top: 10px;
+        }
+        .button-fake {
+            background-color: #FF0000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .prank-reveal {
+            margin-top: 30px;
+            color: #FFFFFF;
+            font-size: 1.5em;
+            display: none; /* Awalnya disembunyikan */
+            animation: fadeIn 1s;
+        }
+        /* --- Animasi --- */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 1); }
+            100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="error-box">
+        <h1>🚨 ERROR KRITIS DITEMUKAN PADA PERANGKAT ANDA 🚨</h1> 
+        <p>Sistem Deteksi Virus Level 5 telah menemukan aktivitas mencurigakan yang tak terduga. Seluruh data perangkat sedang disalin dan dienkripsi. JANGAN TUTUP JENDELA INI!</p>
+        <div class="timer" id="timer">00:00:10</div>
+        
+        <button class="button-fake" onclick="revealPrank()">HUBUNGI TEKNISI SEKARANG</button>
+    </div>
+
+    <div class="prank-reveal" id="prank-reveal">
+        HAHAHA! Anda telah di-PRANK oleh XPRIME! <br> TIDAK ADA VIRUS! STUPID 😹 😂
+    </div>
+
+    <script>
+        // --- JavaScript: Logika Hitung Mundur dan Reveal Prank ---
+        let timeRemaining = 10;
+        const timerElement = document.getElementById('timer');
+        const errorBox = document.getElementById('error-box');
+        const prankReveal = document.getElementById('prank-reveal');
+
+        function updateTimer() {
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                let seconds = timeRemaining.toString().padStart(2, '0');
+                timerElement.textContent = `00:00:${seconds}`;
+            } else {
+                // Ketika waktu habis, langsung reveal prank
+                clearInterval(timerInterval);
+                revealPrank();
+            }
+        }
+
+        // Jalankan timer
+        const timerInterval = setInterval(updateTimer, 1000);
+
+        // Fungsi untuk menampilkan pesan prank saat tombol ditekan atau waktu habis
+        function revealPrank() {
+            clearInterval(timerInterval); // Hentikan hitungan mundur
+            errorBox.style.display = 'none'; // Sembunyikan kotak error
+            prankReveal.style.display = 'block'; // Tampilkan pesan prank
+            
+            // Perbarui gaya latar belakang agar pesan prank lebih menonjol
+            document.body.style.backgroundColor = '#333';
+            document.body.style.color = '#00FF00'; 
+        }
+    </script>
+</body>
+</html>
